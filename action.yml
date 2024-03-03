@@ -1,0 +1,35 @@
+name: "AWS S3 Sync"
+description: "This action syncs github repository with AWS S3 buckets"
+author: yashrajdighe
+
+inputs:
+  source:
+    description: "source directory"
+    required: true
+  delete:
+    description: "delete files which does not exists ar source"
+    default: "False"
+  exclude:
+    description: "files to exclude"
+    default: ""
+  include:
+    description: "files to include"
+    default: "*"
+  destination:
+    description: "S3 bucket name with directory to sync data"
+    required: true
+  dryrun:
+    description: "Dry run the output"
+    default: "False"
+  
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    SOURCE: ${{ inputs.source }}
+    DELETE: ${{ inputs.delete }}
+    EXCLUDE: ${{ inputs.exclude }}
+    INCLUDE: ${{ inputs.include }}
+    DESTINATION: ${{ inputs.destination }}
+    DRYRUN: ${{ inputs.dryrun }}
