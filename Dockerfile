@@ -1,4 +1,4 @@
-FROM python:3.10.12-slim
+FROM python:3.14.7-slim
 
 RUN apt update && apt install awscli -y --no-install-recommends
 
